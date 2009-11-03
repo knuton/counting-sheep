@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script type="text/javascript" src="Scripts/CanvasHelpers.js"></script>
   <script type="text/javascript" src="Scripts/Main.js"></script>
   <style type="text/css">
       @import "Style.css";
@@ -14,7 +13,10 @@
       <input type="input" name="minutes" id="minutes" size="2">
       <input type="input" name="seconds" id="seconds" size="2">
     </form>
-    <a href="#start"><canvas id="start" width="15" height="15"></canvas></a><a href="#stop"><canvas id="stop" width="15" height="15"></canvas></a>
+    <a href="#start"><canvas id="start" width="15" height="15"></canvas></a>
+    <a href="#stop"><canvas id="stop" width="15" height="15"></canvas></a>
+    <div class="flip" id="fliprollie"></div>
+    <div class="flip" id="flip" onclick="showPrefs();" onmouseover="document.getElementById('fliprollie').style.display = 'block';" onmouseout="document.getElementById('fliprollie').style.display = 'none';"></div>
   </div>
   <div id="back">
   </div>
