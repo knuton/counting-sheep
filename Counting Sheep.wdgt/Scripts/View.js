@@ -4,15 +4,36 @@ var View = {
     Properties.controlSize = document.getElementById('stop').width;
     Properties.radius = 2;
     
+    // Set handlers for control buttons
+    View.start = document.getElementById('start');
+    View.stop = document.getElementById('stop');
+    View.start.onclick = Controller.start;
+    View.stop.onclick = Controller.stop;
+    
+    // Get input elements
     View.hours = document.getElementById('hours');
     View.minutes = document.getElementById('minutes');
     View.seconds = document.getElementById('seconds');
+    
+    // Set action for form submission
+    document.timeinput.onsubmit = Controller.start;
+    
+    // Accept only numerical input
+    View.hours.onkeypress = View.stripLetters;
+    View.minutes.onkeypress = View.stripLetters;
+    View.seconds.onkeypress = View.stripLetters;
   },
   
   "blurInputs" : function () {
     View.hours.blur();
     View.minutes.blur();
     View.seconds.blur();
+  },
+  
+  // Check whether pressed key was a number or control key
+  "stripLetters" : function (event) {
+    event = event || window.event
+    return event.keyCode in Properties.numberAndControlChars;
   },
   
   // Scale several elements by factor

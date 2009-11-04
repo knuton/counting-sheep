@@ -2,11 +2,11 @@ require("Scripts/View.js");
 require("Scripts/CanvasHelper.js");
 require("Scripts/Controller.js");
 require("Scripts/Properties.js");
+//require("AppleClasses/Fader.js"); // should work in Dashboard
 
 // Setup
 window.onload = function () {
   View.setup();
-  
   // Set handlers for flip button
   var flipButton = document.getElementById('flip');
   flipButton.onclick = Controller.showPrefs;
@@ -16,12 +16,6 @@ window.onload = function () {
   flipButton.onmouseout = function() {
     document.getElementById('fliprollie').style.display = 'none';
   }
-  
-  // Set handlers for control buttons
-  var startButton = document.getElementById('start');
-  startButton.onclick = Controller.start;
-  var stopButton = document.getElementById('stop');
-  stopButton.onclick = Controller.stop;
   
   View.draw();
 }
