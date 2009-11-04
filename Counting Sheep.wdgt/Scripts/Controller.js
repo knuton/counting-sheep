@@ -1,4 +1,5 @@
 var Controller = {
+  // Act on start of countdown
   "start" : function () {
     // Get hours
     if (Properties.hours.length == 0)
@@ -28,24 +29,24 @@ var Controller = {
     
     return false;
   },
+  // Act on stop of countdown
   "stop" : function () {
     if (typeof (Properties.countdown) != 'undefined') {
       window.clearInterval(Properties.countdown);
     }
-    else {
-      View.hours.value = '00';
-      View.minutes.value = '00';
-      View.seconds.value = '00';
+    else { // #todo
+      Controller.setToZero();
     }
     
     return false;
   },
+  // Countdown one second
   "countdown" : function () {
     // 1 second has passed
     Properties.time = Properties.time - 1;
-    var remaining, amount = Properties.time;
+    var amount = Properties.time;
     // Take action when 00:00:00 is reached
-    if (remaining == 0) {
+    if (amount == 0) {
       Controller.stop();
       Controller.timeUp();
     }
@@ -66,20 +67,27 @@ var Controller = {
     Properties.seconds  = seconds < 10 ? '0' + seconds : seconds;
     View.seconds.value = Properties.seconds;
   },
+  // Set the time to 00:00:00
+  "setToZero" : function () {
+    Properties.hours = 0;
+    View.hours.value = '00';
+    Properties.minutes = 0;
+    View.minutes.value = '00';
+    Properties.seconds = 0;
+    View.seconds.value = '00';
+  },
   "timeUp" : function () {
-    if (document.getElementById('user').value == 0)
+    if (false)
       widget.system("/usr/bin/osascript -e 'tell application \"Finder\" to shut down'", null);
     else
       widget.system("/usr/bin/osascript -e 'tell application \"Finder\" to sleep'", null);
   },
   "showPrefs" : function () {
     window.resizeTo(131,112);
-    var front = document.getElementById("front");
-    var back = document.getElementById("back");
     if (window.widget)
       widget.prepareForTransition("ToBack");
-    front.style.display="none";
-    back.style.display="block";
+    View.front.style.display="none";
+    View.back.style.display="block";
     if (window.widget)
       setTimeout('widget.performTransition();', 0);
     document.getElementById('fliprollie').style.display = 'none';

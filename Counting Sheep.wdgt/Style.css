@@ -10,7 +10,7 @@ body {
   -webkit-border-radius:7px;
 }
 form {
-  display:inline-block;
+  display:block;
   position:relative;
   height:100%;
 }
