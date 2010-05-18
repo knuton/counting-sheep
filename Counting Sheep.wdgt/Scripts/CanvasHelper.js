@@ -10,6 +10,7 @@ var CanvasHelper = function () {
    * @param height The height of the rectangle
    * @param color The fill/stroke color can be CSS color, pattern or gradient
    * @param fillMethod Can be one of {stroke, fill}
+   * @throws IllegalArgumentException if `fillMethod` is illegal value
    */
   var roundedRect = function (ctx, x, y, width, height, radius, color, fillMethod) {
     if (!isValidFillMethod(fillMethod))
@@ -38,6 +39,7 @@ var CanvasHelper = function () {
    * @param height The height of the trangle
    * @param color The fill/stroke color can be CSS color, pattern or gradient
    * @param fillMethod Can be one of {stroke, fill}
+   * @throws IllegalArgumentException if `fillMethod` is illegal value
    */
   var roundedTriang = function (ctx, x, y, width, height, radius, color, fillMethod) {
     if (!isValidFillMethod(fillMethod))
