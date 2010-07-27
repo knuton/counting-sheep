@@ -1,5 +1,5 @@
 PACKED= Counting\ Sheep-pkg.wdgt
-SCRIPT_PATH= Scripts/DevLib.js
+SCRIPT_PATH= Scripts/PseudoDashboard.js
 
 # Packs the widget, creating a copy which will be devoured by Mac OS X
 # when the widget is installed. Also removes the development library.
