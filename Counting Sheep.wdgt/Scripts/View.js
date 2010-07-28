@@ -74,10 +74,8 @@ var View = {
   
   // Scale several elements by factor
   "multiply" : function (factor) {
-    //factor = factor.toFixed(1);
-    console.log(factor);
-    Properties.controlSize *= factor;
-    Properties.radius *= factor;
+    Properties.controlSize = Math.floor(Properties.controlSize * factor);
+    Properties.radius = Math.floor(Properties.radius * factor);
     Properties.lastFactor *= factor;
     
     // Loop through resizable elements to resize
