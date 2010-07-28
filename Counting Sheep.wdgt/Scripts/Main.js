@@ -2,7 +2,7 @@ require("Scripts/View.js");
 require("Scripts/CanvasHelper.js");
 require("Scripts/Controller.js");
 require("Scripts/Properties.js");
-//require("AppleClasses/Fader.js"); // should work in Dashboard
+require("/System/Library/WidgetResources/AppleClasses/Fader.js");
 
 // Setup
 window.onload = function () {
