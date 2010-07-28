@@ -74,9 +74,11 @@ var View = {
   
   // Scale several elements by factor
   "multiply" : function (factor) {
+    //factor = factor.toFixed(1);
+    console.log(factor);
     Properties.controlSize *= factor;
     Properties.radius *= factor;
-    Properties.lastFactor = Properties.lastFactor * factor;
+    Properties.lastFactor *= factor;
     
     // Loop through resizable elements to resize
     for (var i = 0; i < Properties.resizableElements.length; i++) {
@@ -92,6 +94,8 @@ var View = {
     // set non-CSS attributes separately
     View.start.width = View.start.height = Properties.controlSize;
     View.stop.width = View.stop.height = Properties.controlSize;
+    // resize widget "window"
+    window.resizeTo(window.outerWidth * factor, window.outerHeight * factor);
     View.draw();
   },
   

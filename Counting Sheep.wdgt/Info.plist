@@ -14,6 +14,10 @@
 	<string>2.0</string>
 	<key>CFBundleVersion</key>
 	<string>2.0</string>
+	<key>Height</key>
+	<integer>65</integer>
+	<key>Width</key>
+	<integer>135</integer>
 	<key>CloseBoxInsetX</key>
 	<integer>4</integer>
 	<key>CloseBoxInsetY</key>
