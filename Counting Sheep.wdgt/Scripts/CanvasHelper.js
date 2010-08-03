@@ -25,8 +25,8 @@ var CanvasHelper = function () {
     ctx.quadraticCurveTo(x+width,y,x+width-radius,y);
     ctx.lineTo(x+radius,y);
     ctx.quadraticCurveTo(x,y,x,y+radius);
-    eval('ctx.' + fillMethod + 'Style = color');
-    eval('ctx.' + fillMethod + '()');
+    ctx[fillMethod + 'Style'] = color;
+    ctx[fillMethod]();
   };
 
   /**
@@ -53,12 +53,12 @@ var CanvasHelper = function () {
     ctx.lineTo(x+radius,y);
     ctx.quadraticCurveTo(x,y,x,y+radius);
     ctx.fillStyle = color;
-    eval('ctx.' + fillMethod + 'Style = color');
-    eval('ctx.' + fillMethod + '()');
+    ctx[fillMethod + 'Style'] = color;
+    ctx[fillMethod]();
   };
 
   var isValidFillMethod = function (fillMethod) {
-    return fillMethod == 'fill' || fillMethod == 'stroke';
+    return fillMethod === 'fill' || fillMethod === 'stroke';
   };
 
   return {
