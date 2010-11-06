@@ -3,11 +3,11 @@ body {
 }
 #front {
   position:relative;
-  width:114px;
-  height:44px;
-  background-color:#EBF0FA;
-  background: -webkit-canvas(bgcan);
-  -webkit-border-radius:7px;
+  width:147px;
+  height:30px;
+  background-color:#B5C4E3;
+  /*background: -webkit-canvas(bgcan);*/
+  -webkit-border-radius:4px;
   -webkit-box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.45);
 }
 form {
@@ -16,37 +16,50 @@ form {
   height:100%;
 }
 input {
-  padding:1px;
-  width:20px;
-  height:15px;
-  border:none;
-  -webkit-border-radius:3px;
+  padding: 0 1px 0 1px;
+  width:18px;
+  height:16px;
+  -webkit-border-radius: 1px;
+  border: none;
+  /*border: 1px solid #757C8A;*/
+  line-height: 15px;
+  font-size:11px;
   font-family: 'Consolas', 'Monaco', 'Courier';
-  font-size:12px;
-  text-align:center;
+  text-align: center;
 }
 #start {
   position: absolute;
-  top: 4px;
-  right: 21px;
+  top: 7px;
+  right: 51px;
 }
 #stop {
   position: absolute;
-  top: 4px;
-  right: 4px;
+  top: 7px;
+  right: 34px;
 }
 #hours {
   position: absolute;
-  top: 4px;
-  left: 4px;
+  top: 7px;
+  left: 7px;
 }
 #minutes {
   position: absolute;
-  top: 4px;
-  left: 28px;
+  top: 7px;
+  left: 31px;
 }
 #seconds {
   position: absolute;
-  top: 4px;
-  left: 52px;
+  top: 7px;
+  left: 55px;
+}
+#drag {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-border-radius: 0 4px 4px 0;
+  border-left: 1px solid #253557;
+  background: -webkit-gradient(linear, left top, right top, from(#2E426B), to(#1F2C47));
+  cursor: move;
 }
