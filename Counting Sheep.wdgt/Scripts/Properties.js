@@ -8,7 +8,8 @@ var Properties = {
   // List of all elements to be resized
   "resizableElements" : [
     'front', 'hours', 'minutes',
-    'seconds', 'start', 'stop'
+    'seconds', 'start', 'stop',
+    'drag'
   ],
   // List of attributes to be resized
   "resizableAttributes" : [
