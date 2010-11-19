@@ -2,20 +2,12 @@ require("Scripts/View.js");
 require("Scripts/CanvasHelper.js");
 require("Scripts/Controller.js");
 require("Scripts/Properties.js");
-require("/System/Library/WidgetResources/AppleClasses/Fader.js");
+require("AppleClasses/AppleInfoButton.js");
+require("AppleClasses/AppleAnimator.js");
 
 // Setup
 window.onload = function () {
   View.setup();
-  // Set handlers for flip button
-  var flipButton = document.getElementById('flip');
-  flipButton.onclick = Controller.showPrefs;
-  flipButton.onmouseover = function () {
-    document.getElementById('fliprollie').style.display = 'block';
-  } 
-  flipButton.onmouseout = function() {
-    document.getElementById('fliprollie').style.display = 'none';
-  }
   
   View.draw();
 }

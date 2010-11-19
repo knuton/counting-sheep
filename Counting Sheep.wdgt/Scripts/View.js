@@ -1,4 +1,49 @@
 var View = {
+  
+  // TODO Mimick Apple's mouse events to ease background in and out with infoButton
+  WrappedAppleInfoButton : function (flipper, front, foregroundStyle, backgroundStyle, onclick) {
+    var _self = this;
+    
+    this._front = front;
+    this._flipper = flipper;
+    this._infoButton = document.createElement('div');
+    this._infoButton.id = 'infoButton';
+    this._flipper.appendChild(this._infoButton);
+    this._appleInfoButton = new AppleInfoButton(
+      this._infoButton, front, foregroundStyle, backgroundStyle, onclick
+    );
+    
+    // Add event listeners for flipper (background)
+    this._front.addEventListener("mousemove", this._frontMove, true);
+    this._front.addEventListener("mouseout", this._frontOutDelay, true);
+    
+    this._frontMove = function(event) {
+      if (_self._outdelay !== undefined) {
+        clearTimeout(_self._outdelay);
+        delete _self._outdelay;
+      }
+      if (_self._labelshown) return;
+
+      var from = 0.0;
+      var duration = 500;
+      if (_self._animation !== undefined) {
+        from = _self._animation.now;
+        duration = (new Date).getTime() - _self._animator.startTime;
+        _self._animator.stop();
+      }
+
+      _self._labelshown = true;
+
+      var animator = new AppleAnimator(duration, 13);
+      animator.oncomplete = _self._animationComplete;
+      _self._animator = animator;
+
+      _self._animation = new AppleAnimation(from, 1.0, _self._updateOpacity);
+      animator.addAnimation(_self._animation);
+      animator.start();
+    }
+  },
+  
   "setup" : function () {
     // Get canvas size
     Properties.controlSize = document.getElementById('stop').width;
@@ -7,6 +52,11 @@ var View = {
     // Get front and back
     View.front = document.getElementById('front');
     View.back = document.getElementById('back');
+    
+    // Set up Apple UI
+    View.flipper = new this.WrappedAppleInfoButton(
+      document.getElementById('flipper'), document.getElementById('front'), 'black', 'white', this.showPrefs
+    );
     
     // Set handlers for control buttons
     View.start = document.getElementById('start');
@@ -122,5 +172,18 @@ var View = {
     gradient.addColorStop(1, "#ECF0FA");
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, frontWidth, frontHeight);
+  },
+  
+  // Show widget's back
+  "showPrefs" : function () {
+    window.resizeTo(131,112);
+    if (window.widget)
+      widget.prepareForTransition("ToBack");
+    View.front.style.display="none";
+    View.back.style.display="block";
+    if (window.widget)
+      setTimeout('widget.performTransition();', 0);
+    document.getElementById('fliprollie').style.display = 'none';
+    flipper.fadeOut();
   }
 }

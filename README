@@ -5,3 +5,8 @@ Widget for Mac OS X's Dashboard.
 Let's you set a timer for your computer to go to sleep or shutdown.
 
 As this is going to be a complete rewrite of the widget, it is going to be Counting Sheep 2.0.
+
+Changes
+=======
+
+- Due to changes in Apple’s environment this version of Counting Sheep will require Mac OS X 10.4.3.

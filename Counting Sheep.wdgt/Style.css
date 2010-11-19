@@ -3,6 +3,7 @@ body {
 }
 #front {
   position:relative;
+  left: 20px;
   width:147px;
   height:30px;
   background-color:#B5C4E3;
@@ -51,6 +52,19 @@ input {
   position: absolute;
   top: 7px;
   left: 55px;
+}
+#flipper {
+  position: absolute;
+  top: 8px;
+  left: -20px;
+  width: 14px;
+  height: 14px;
+  -webkit-border-radius: 2px;
+  background-color: #B5C4E3;
+  /* Hack around Apple's positioning */
+  border-color: #B5C4E3;
+  border-style: solid;
+  border-width: 1px 0 0 1px;
 }
 #drag {
   width: 30px;

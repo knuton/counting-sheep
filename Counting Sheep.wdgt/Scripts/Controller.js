@@ -81,16 +81,5 @@ var Controller = {
       widget.system("/usr/bin/osascript -e 'tell application \"Finder\" to shut down'", null);
     else
       widget.system("/usr/bin/osascript -e 'tell application \"Finder\" to sleep'", null);
-  },
-  "showPrefs" : function () {
-    window.resizeTo(131,112);
-    if (window.widget)
-      widget.prepareForTransition("ToBack");
-    View.front.style.display="none";
-    View.back.style.display="block";
-    if (window.widget)
-      setTimeout('widget.performTransition();', 0);
-    document.getElementById('fliprollie').style.display = 'none';
-    flipper.fadeOut();
   }
 }
