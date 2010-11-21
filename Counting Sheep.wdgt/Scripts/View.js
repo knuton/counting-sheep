@@ -69,6 +69,9 @@ var View = {
     View.minutes = document.getElementById('minutes');
     View.seconds = document.getElementById('seconds');
     
+    // Get drag element
+    View.drag = document.getElementById('drag');
+    
     // Set action for form submission
     document.timeinput.onsubmit = Controller.start;
     
@@ -172,6 +175,12 @@ var View = {
     gradient.addColorStop(1, "#ECF0FA");
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, frontWidth, frontHeight);
+    
+    // Draw drag area
+    var dragCtx = View.drag.getContext('2d');
+    for (var i = 0; i < View.drag.width; i = i + Properties.barDistance * Properties.lastFactor) {
+      CanvasHelper.shadowedLine(dragCtx, i, 1, Properties.barWidth * Properties.lastFactor, View.drag.height - 2, '#1F2C47', '#fff');
+    }
   },
   
   // Show widget's back

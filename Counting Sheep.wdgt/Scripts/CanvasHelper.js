@@ -56,6 +56,15 @@ var CanvasHelper = function () {
     ctx[fillMethod + 'Style'] = color;
     ctx[fillMethod]();
   };
+  
+  var shadowedLine = function (ctx, x, y, width, height, fgColor, shadowColor) {
+    var offset = width / 5;
+    if (offset < 1) offset = 1;
+    ctx.fillStyle = shadowColor;
+    ctx.fillRect(x + offset, y, width, height);
+    ctx.fillStyle = fgColor;
+    ctx.fillRect(x + offset, y, width, height);
+  };
 
   var isValidFillMethod = function (fillMethod) {
     return fillMethod === 'fill' || fillMethod === 'stroke';
@@ -64,6 +73,7 @@ var CanvasHelper = function () {
   return {
     // public methods
     roundedRect : roundedRect,
-    roundedTriang : roundedTriang
+    roundedTriang : roundedTriang,
+    shadowedLine : shadowedLine
   };
 }();

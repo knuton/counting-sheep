@@ -67,13 +67,15 @@ input {
   border-width: 1px 0 0 1px;
 }
 #drag {
-  width: 30px;
-  height: 30px;
   position: absolute;
   right: 0;
   top: 0;
   -webkit-border-radius: 0 4px 4px 0;
   border-left: 1px solid #253557;
-  background: -webkit-gradient(linear, left top, right top, from(#2E426B), to(#1F2C47));
+  background: -webkit-gradient(linear,
+    left top, right top,
+    from(#2E426B),
+    to(#1F2C47)
+  );
   cursor: move;
 }

@@ -11,6 +11,9 @@ var Properties = {
     'seconds', 'start', 'stop',
     'drag'
   ],
+  // handle bars
+  "barDistance" : 4,
+  "barWidth" : 1,
   // List of attributes to be resized
   "resizableAttributes" : [
     'width', 'height', 'top', 'left', 'right', 'bottom',
