@@ -100,13 +100,14 @@ test('stopping on call', function () {
 test('not running for zero-countdown', function () {
   Counter.reset();
   Counter.start();
-  ok(!Counter.isRunning(), 'Counter is running for 0:0:0');
+  ok(!Counter.isRunning(), 'Status of counter after starting at elapsed time');
 });
 
-test('executes onelapse handler', 1, function () {
+asyncTest('executes onelapse handler', 1, function () {
   Counter.set(0,0,1);
   Counter.elapse(function () {
-    ok(true, 'Did not call elapse handler');
+    ok(true, 'Execution of passed elapse handler');
+    start();
   });
   Counter.start();
 });
