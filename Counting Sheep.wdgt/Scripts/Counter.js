@@ -2,7 +2,9 @@ var Counter = (function () {
   var counter = {
         hours: 0, minutes: 0, seconds: 0
       },
+      // holds the interval ID of a running countdown
       countdownInterval,
+      // currently only one handler for the elapse-event
       eventHandler;
 
   function _setX (X, value) {
@@ -12,7 +14,7 @@ var Counter = (function () {
     if (!counter.hasOwnProperty(X))
       throw new TypeError('Counter has no property ' + X);
 
-    if (typeof value !== 'number') value = parseInt(value);
+    if (typeof value !== 'number') value = parseInt(value, 10);
 
     // don't accept negative numbers or NaN values
     if (value < 0 || (!(value < 0) && !(value >= 0))) {
@@ -75,7 +77,6 @@ var Counter = (function () {
 
   function stop () {
     if (isRunning()) {
-      // TODO What exactly does clearInterval do?
       window.clearInterval(countdownInterval);
       countdownInterval = void 0;
     }
