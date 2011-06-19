@@ -5,7 +5,8 @@ var Counter = (function () {
       // holds the interval ID of a running countdown
       countdownInterval,
       // currently only one handler for the elapse-event
-      eventHandler;
+      eventHandler,
+      observers = [];
 
   function _setX (X, value) {
     // no outside manipulation when running
@@ -65,6 +66,8 @@ var Counter = (function () {
         } else counter.minutes -= 1;
       } else counter.seconds -= 1;
     }
+    // notify observers
+    push();
   }
 
 
@@ -96,6 +99,19 @@ var Counter = (function () {
     eventHandler = fn;
   }
 
+  function notify (observer) {
+    for (var i = 0; i < observers.length; i++) {
+      if (observers[i] === observer) return;
+    }
+    observers.push(observer);
+  }
+
+  function push () {
+    for (var i = 0; i < observers.length; i++) {
+      observers[i](counter.hours, counter.minutes, counter.seconds);
+    }
+  }
+
   // Return Counter object
   return {
     hours: hours,
@@ -107,7 +123,8 @@ var Counter = (function () {
     stop: stop,
     isElapsed: isElapsed,
     isRunning: isRunning,
-    elapse: elapse
+    elapse: elapse,
+    notify: notify,
   };
 })();
 

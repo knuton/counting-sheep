@@ -1,3 +1,5 @@
+//// Canvas Helper
+
 module("CanvasHelper.js");
 
 test("rejection of fill method `strill`", function () {
@@ -35,6 +37,8 @@ test("acceptance of fill method `stroke`", function () {
   }
   ok(!caughtError, "An error has been thrown, but shouldn't have been.");
 });
+
+//// Counter
 
 module('Counter');
 
@@ -101,6 +105,17 @@ test('not running for zero-countdown', function () {
   Counter.reset();
   Counter.start();
   ok(!Counter.isRunning(), 'Status of counter after starting at elapsed time');
+});
+
+asyncTest('notify observer', 1, function () {
+  var notifications = '';
+  Counter.set(0,0,2);
+  Counter.notify(function (h, m, s) { notifications += h + ':' + m + ':' + s; });
+  Counter.elapse(function () {
+    equals(notifications, '0:0:10:0:0');
+    start();
+  });
+  Counter.start();
 });
 
 asyncTest('executes onelapse handler', 1, function () {
