@@ -76,17 +76,15 @@ var Controller = {
     Properties.seconds = 0;
     View.seconds.value = '00';
   },
-  // Handler for widget.system(), when putting system to sleep
-  "widgetSystemHandler" : function (command) {
-    if (command.outputString[3] === "4")
-      widget.system("/usr/bin/osascript -e 'tell application \"Finder\" to sleep'", null);
-	else
-	  widget.system("/usr/bin/pmset sleepnow", null);
-  },
   "timeUp" : function () {
     if (false)
       widget.system("/usr/bin/osascript -e 'tell application \"Finder\" to shut down'", null);
     else
-      widget.system("/usr/bin/sw_vers -productVersion", Controller.widgetSystemHandler);
+      widget.system("/usr/bin/osascript -e 'set productVersion to do shell script \"sw_vers -productVersion\"\n" +
+      										 "if item 4 of productVersion = \"4\" then\n" +
+      											"\ttell application \"Finder\" to sleep\n" +
+      										"else\n" +
+      											"\tdo shell script \"pmset sleepnow\"\n" +
+      										"end if'", null);
   }
 }
