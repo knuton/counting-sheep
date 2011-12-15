@@ -6,27 +6,27 @@ var Controller = {
       Properties.hours = 0;
     else
       Properties.hours = View.hours.value;
-    
+
     // Get minutes
     if (Properties.minutes.length == 0)
       Properties.minutes = 0;
     else
       Properties.minutes = View.minutes.value;
-    
+
     // Get seconds
     if (Properties.seconds.length == 0)
       Properties.seconds  = 0;
     else
       Properties.seconds = View.seconds.value;
-    
+
     // Calculate time in seconds
     Properties.time = Properties.hours*3600 + Properties.minutes*60 + Properties.seconds*1;
     // Start countdown unless total time is <= 0
     if (Properties.time > 0)
       Properties.countdown = window.setInterval('Controller.countdown()',1000);
-    
+
     View.blurInputs();
-    
+
     return false;
   },
   // Act on stop of countdown
@@ -37,7 +37,7 @@ var Controller = {
     else { // #todo
       Controller.setToZero();
     }
-    
+
     return false;
   },
   // Countdown one second
@@ -76,10 +76,17 @@ var Controller = {
     Properties.seconds = 0;
     View.seconds.value = '00';
   },
+  // Handler for widget.system(), when putting system to sleep
+  "widgetSystemHandler" : function (command) {
+    if (command.outputString[3] === "4")
+      widget.system("/usr/bin/osascript -e 'tell application \"Finder\" to sleep'", null);
+	else
+	  widget.system("/usr/bin/pmset sleepnow", null);
+  },
   "timeUp" : function () {
     if (false)
       widget.system("/usr/bin/osascript -e 'tell application \"Finder\" to shut down'", null);
     else
-      widget.system("/usr/bin/osascript -e 'tell application \"Finder\" to sleep'", null);
+      widget.system("/usr/bin/sw_vers -productVersion", Controller.widgetSystemHandler);
   }
 }
